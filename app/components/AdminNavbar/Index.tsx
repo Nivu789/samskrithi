@@ -10,7 +10,7 @@ import {
   } from "@heroicons/react/24/outline";
 import { DownloadIcon, GalleryThumbnails, HeartHandshake, PaperclipIcon, Workflow, LinkIcon, BriefcaseBusinessIcon } from 'lucide-react';
 import { useEffect } from 'react';
-import { useRefetchServices } from '@/app/contexts/refetchServices';
+// import { useRefetchServices } from '@/app/contexts/refetchServices';
 import { toast } from 'sonner';
 import { RiProductHuntLine } from 'react-icons/ri';
 import { Settings } from 'lucide-react';
@@ -19,11 +19,11 @@ import { Settings } from 'lucide-react';
 const AdminNavbar = () => {
 
     const [openLink, setOpenLink] = useState<string | null>(null);
-    const {refetchServices} = useRefetchServices();
+    // const {refetchServices} = useRefetchServices();
     
-    useEffect(() => {
-      fetchServiceData()
-  },[refetchServices])
+  //   useEffect(() => {
+  //     fetchServiceData()
+  // },[refetchServices])
   
   const [serviceData, setServiceData] = useState([])
 
