@@ -1,0 +1,97 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply font-dm bg-cream-light text-brown-darkest;
+  }
+
+  input, textarea, select {
+    @apply border border-cream-dark bg-cream-light px-4 py-2.5 text-sm text-brown-darkest
+           outline-none transition-colors duration-200 w-full rounded-none;
+  }
+
+  input:focus, textarea:focus, select:focus {
+    @apply border-gold;
+  }
+}
+
+@keyframes autoplay-bar {
+  from { width: 0% }
+  to   { width: 100% }
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shimmer-gold {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+
+@keyframes float-a {
+  0%, 100% { transform: translate(0, 0); }
+  33%      { transform: translate(18px, -22px); }
+  66%      { transform: translate(-12px, 14px); }
+}
+
+@keyframes float-b {
+  0%, 100% { transform: translate(0, 0); }
+  50%      { transform: translate(-20px, 18px); }
+}
+
+@keyframes float-c {
+  0%, 100% { transform: translate(0, 0); }
+  40%      { transform: translate(14px, 20px); }
+  80%      { transform: translate(-8px, -10px); }
+}
+
+@layer components {
+  .btn-gold {
+    @apply bg-gold text-brown-darkest px-8 py-3 text-xs tracking-widest uppercase font-semibold
+           hover:bg-gold-light transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg
+           inline-block;
+  }
+
+  .btn-outline {
+    @apply border border-cream-dark text-cream-dark px-8 py-3 text-xs tracking-widest uppercase
+           font-medium hover:border-gold hover:text-gold transition-all duration-200 inline-block;
+  }
+
+  .page-hero {
+    @apply pt-16;
+    background: linear-gradient(135deg, #3D1F0A 0%, #6B3A1F 100%);
+  }
+
+  .section-tag {
+    @apply text-gold text-xs tracking-[0.3em] uppercase font-medium block mb-3;
+  }
+
+  .section-title {
+    @apply font-playfair text-4xl md:text-5xl text-brown-darkest leading-tight;
+  }
+
+  .gold-divider {
+    @apply w-14 h-0.5 bg-gold my-5;
+  }
+
+  .tag-pill {
+    @apply bg-cream-dark text-brown-mid text-xs font-semibold tracking-wider uppercase px-3 py-1;
+  }
+
+  .shimmer-gold {
+    background: linear-gradient(90deg, #C49A2E 0%, #E8C656 35%, #fffbe8 50%, #E8C656 65%, #C49A2E 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer-gold 3s linear infinite;
+  }
+}
