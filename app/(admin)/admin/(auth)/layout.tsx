@@ -13,7 +13,7 @@ export default function AdminLayout({
       {/* Sidebar */}
       <aside className="w-64 bg-white shadow-md flex flex-col h-screen overflow-y-auto">
         <div className="flex-1 px-3 py-4">
-          <div className="mb-6 px-4 flex flex-col gap-2 py-2">
+          {/* <div className="mb-6 px-4 flex flex-col gap-2 py-2">
             <div className="flex items-center">
               <Image
                 src="/assets/logos/logo-primary-full.png"
@@ -22,7 +22,7 @@ export default function AdminLayout({
                 height={150}
               />
             </div>
-          </div>
+          </div> */}
           <nav className="space-y-1">
             <AdminNavbar />
           </nav>

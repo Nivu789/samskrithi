@@ -95,3 +95,8 @@
     animation: shimmer-gold 3s linear infinite;
   }
 }
+
+:root {
+    --background: #ffffff;
+    --primary: #294596;
+}

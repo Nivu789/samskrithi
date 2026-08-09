@@ -150,7 +150,7 @@ export default function ActivitiesPage() {
       </section>
 
       {/* ── Stats strip ───────────────────────────────────────── */}
-      <div className="bg-brown-darkest py-8 px-6 border-b border-gold/20">
+      {/* <div className="bg-brown-darkest py-8 px-6 border-b border-gold/20">
         <div className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
           {[
             ['4',    'Disciplines'],
@@ -164,7 +164,7 @@ export default function ActivitiesPage() {
             </div>
           ))}
         </div>
-      </div>
+      </div> */}
 
       {/* ── Activity sections ─────────────────────────────────── */}
       <section className="bg-white">

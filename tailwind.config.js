@@ -26,6 +26,8 @@ module.exports = {
           dark:    '#E8D5B7',
           muted:   '#D9C4A0',
         },
+        primary: 'var(--primary)',
+        background: 'var(--background)',
       },
       fontFamily: {
         playfair: ['var(--font-playfair)', 'Georgia', 'serif'],

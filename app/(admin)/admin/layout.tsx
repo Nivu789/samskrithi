@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-// import "../../../app/globals.css";
+import "../../../app/globals.css";
 // import { RefetchServicesProvider } from "@/app/contexts/refetchServices";
 import { Toaster } from 'sonner';
 

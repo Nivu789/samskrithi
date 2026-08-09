@@ -49,15 +49,15 @@ const AdminNavbar = () => {
     const navItems = [
         { name: "Home", href: "/admin/home", icon: HomeIcon },
         { name: "About", href: "/admin/about", icon: UserGroupIcon },
-        { name: "Services", href: "#", icon: EnvelopeIcon,hasChild:true,children: [
-          { name: "Main Page", href: "/admin/services" },
-          { name: "Services Section", href: "/admin/services/services-section" },
-            ...serviceData.map((service: { _id: string,thumbnailTitle:string }) => (
-              { name: service.thumbnailTitle.split(" ").slice(0,2).join(" ") + "...", href: `/admin/services/${service._id}` }
-            )),
-          ] },
-          { name: "Products", href: "/admin/products", icon: RiProductHuntLine },
-        { name: "Projects", href: "/admin/projects", icon: Workflow },
+        // { name: "Services", href: "#", icon: EnvelopeIcon,hasChild:true,children: [
+        //   { name: "Main Page", href: "/admin/services" },
+        //   { name: "Services Section", href: "/admin/services/services-section" },
+        //     ...serviceData.map((service: { _id: string,thumbnailTitle:string }) => (
+        //       { name: service.thumbnailTitle.split(" ").slice(0,2).join(" ") + "...", href: `/admin/services/${service._id}` }
+        //     )),
+        //   ] },
+          { name: "Activities", href: "/admin/activities", icon: Workflow },
+        // { name: "Projects", href: "/admin/projects", icon: Workflow },
         { name: "Gallery", href: "/admin/gallery", icon: GalleryThumbnails },
         { name: "Contact", href: "###", icon: EnvelopeIcon,hasChild:true,children: [
           { name: "Main Page", href: "/admin/contact" },
