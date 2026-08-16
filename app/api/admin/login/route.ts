@@ -16,10 +16,13 @@ export async function POST(request: Request) {
     // Find admin user
     const admin = await Admin.findOne({ username });
 
+    console.log(admin)
+
     if (!admin) {
       return NextResponse.json({ success: false, message: "Invalid credentials" }, { status: 401 });
     }
 
+    console.log(admin.password)
     // Check password
     const isMatch = await bcrypt.compare(password, admin.password);
 

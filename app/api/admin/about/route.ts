@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import connectDB from "@/lib/mongodb";
 import About from "@/app/models/About";
 import { verifyAdmin } from "@/lib/verifyAdmin";
+import { revalidateTag } from "next/cache";
 
 
 export async function GET() {
@@ -30,6 +31,7 @@ export async function PATCH(request: NextRequest) {
         if (!about) {
             return NextResponse.json({ message: "About not found" }, { status: 404 });
         }
+        revalidateTag("about");
         return NextResponse.json({data:about,message:"About updated successfully"}, { status: 200 });
     } catch (error) {
         console.log(error);

@@ -1,9 +1,11 @@
+import { getActivity } from '@/lib/service/activity.service';
 import Link from 'next/link';
 
 export const metadata = {
   title: 'Activities — Samskrithi',
 };
 
+// Static fallback data — kept for reference, no longer used for rendering.
 const ACTIVITIES = [
   {
     title:   'Badminton',
@@ -75,7 +77,13 @@ const ACTIVITIES = [
   },
 ];
 
-export default function ActivitiesPage() {
+export default async function ActivitiesPage() {
+
+  const activities = await getActivity();
+  const banner = activities.bannerSection;
+  const items = activities.secondSection?.items ?? [];
+  const cta = activities.ctaSection;
+
   return (
     <>
       {/* ── Hero ──────────────────────────────────────────────── */}
@@ -114,25 +122,25 @@ export default function ActivitiesPage() {
             className="section-tag justify-center flex"
             style={{ animation: 'fade-up 0.6s ease forwards', opacity: 0 }}
           >
-            Classes &amp; Training
+            {banner?.subTitle}
           </span>
 
           <h1
             className="font-playfair text-5xl md:text-7xl text-cream leading-tight"
             style={{ animation: 'fade-up 0.6s ease 0.15s forwards', opacity: 0 }}
           >
-            Our <em className="shimmer-gold not-italic">Activities</em>
+            {banner?.title}
           </h1>
 
           <p
             className="text-cream-dark font-light mt-6 max-w-xl mx-auto leading-relaxed text-lg"
             style={{ animation: 'fade-up 0.6s ease 0.3s forwards', opacity: 0 }}
           >
-            Four disciplines. One community. Endless passion for learning and performance.
+            {banner?.description}
           </p>
 
           <div className="flex justify-center gap-3 mt-10 flex-wrap">
-            {ACTIVITIES.map(({ title }, i) => (
+            {banner?.items?.map(({ title }, i) => (
               <span
                 key={title}
                 className="border border-gold/40 text-cream-dark text-xs px-5 py-2 tracking-wide"
@@ -149,26 +157,9 @@ export default function ActivitiesPage() {
         </div>
       </section>
 
-      {/* ── Stats strip ───────────────────────────────────────── */}
-      {/* <div className="bg-brown-darkest py-8 px-6 border-b border-gold/20">
-        <div className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-          {[
-            ['4',    'Disciplines'],
-            ['500+', 'Active Members'],
-            ['6',    'Days a Week'],
-            ['12+',  'Years Running'],
-          ].map(([num, label]) => (
-            <div key={label}>
-              <span className="font-playfair text-3xl text-gold font-bold block">{num}</span>
-              <span className="text-cream-dark text-xs tracking-widest uppercase block mt-1">{label}</span>
-            </div>
-          ))}
-        </div>
-      </div> */}
-
       {/* ── Activity sections ─────────────────────────────────── */}
       <section className="bg-white">
-        {ACTIVITIES.map(({ title, tagline, image, desc, highlights, tags, timing, days, venue, leader, phone }, i) => (
+        {items.map(({ title, subTitle, image, imageAlt, description, subItems, tags, timing, days, venue, leader, contact }, i) => (
           <div
             key={title}
             className={`flex flex-col ${i % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} border-b border-cream-dark`}
@@ -177,34 +168,34 @@ export default function ActivitiesPage() {
             <div className="md:w-2/5 relative overflow-hidden min-h-80 md:min-h-[420px]">
               <img
                 src={image}
-                alt={title}
+                alt={imageAlt || title}
                 className="absolute inset-0 w-full h-full object-cover object-center"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-8">
                 <h2 className="font-playfair text-4xl text-white leading-tight">{title}</h2>
                 <div className="w-10 h-px bg-gold my-3" />
-                <p className="text-white/75 text-sm font-light tracking-wide">{tagline}</p>
+                <p className="text-white/75 text-sm font-light tracking-wide">{subTitle}</p>
               </div>
             </div>
 
             {/* Content panel */}
             <div className="md:w-3/5 py-12 px-8 lg:px-14 flex flex-col justify-center">
-              <p className="text-brown-mid leading-relaxed font-light mb-8">{desc}</p>
+              <p className="text-brown-mid leading-relaxed font-light mb-8">{description}</p>
 
               {/* Highlights */}
               <ul className="space-y-2.5 mb-8">
-                {highlights.map((h) => (
-                  <li key={h} className="flex items-start gap-3 text-sm text-brown-mid">
+                {subItems?.map(({ value }) => (
+                  <li key={value} className="flex items-start gap-3 text-sm text-brown-mid">
                     <span className="text-gold font-bold shrink-0 mt-0.5">✦</span>
-                    <span>{h}</span>
+                    <span>{value}</span>
                   </li>
                 ))}
               </ul>
 
               {/* Schedule grid */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 bg-cream-light p-5 mb-6">
-                {[['Timing', timing], ['Days', days], ['Venue', venue], ['Contact', `${leader} · ${phone}`]].map(([label, value]) => (
+                {[['Timing', timing], ['Days', days], ['Venue', venue], ['Contact', `${leader} · ${contact}`]].map(([label, value]) => (
                   <div key={label}>
                     <span className="block text-xs text-gold font-semibold tracking-widest uppercase mb-1">
                       {label}
@@ -216,8 +207,8 @@ export default function ActivitiesPage() {
 
               {/* Tags */}
               <div className="flex flex-wrap gap-2">
-                {tags.map((tag) => (
-                  <span key={tag} className="tag-pill">{tag}</span>
+                {tags?.map(({ value }) => (
+                  <span key={value} className="tag-pill">{value}</span>
                 ))}
               </div>
             </div>
@@ -227,14 +218,14 @@ export default function ActivitiesPage() {
 
       {/* ── CTA ───────────────────────────────────────────────── */}
       <section className="py-24 px-6 text-center" style={{ background: '#3D1F0A' }}>
-        <span className="section-tag justify-center flex">Get Involved</span>
+        <span className="section-tag justify-center flex">{cta?.subTitle}</span>
         <h2 className="font-playfair text-4xl md:text-5xl text-cream mb-4">
-          Ready to <em className="text-gold not-italic">Start?</em>
+          {cta?.title}
         </h2>
         <p className="text-cream-dark font-light max-w-md mx-auto mb-10 leading-relaxed">
-          Join hundreds of community members already learning, growing, and performing together.
+          {cta?.description}
         </p>
-        <Link href="/contact" className="btn-gold">Enquire &amp; Join Us</Link>
+        <Link href={cta?.buttonLink ?? '/contact'} className="btn-gold">{cta?.buttonText}</Link>
       </section>
     </>
   );

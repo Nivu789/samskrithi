@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 
-export default function HomeHero() {
+export default function HomeHero({ data }) {
   const sectionRef = useRef(null);
   const mouseRef   = useRef({ x: -500, y: -500 });
   const ringRef    = useRef({ x: -500, y: -500 });
@@ -12,6 +12,8 @@ export default function HomeHero() {
   const [mouse,  setMouse]  = useState({ x: -500, y: -500 });
   const [ring,   setRing]   = useState({ x: -500, y: -500 });
   const [inside, setInside] = useState(false);
+
+  const { title, subTitle, description, buttons = [] } = data || {};
 
   // Lerp ring position toward cursor on every frame
   useEffect(() => {
@@ -78,18 +80,23 @@ export default function HomeHero() {
 
       {/* Content */}
       <div className="relative z-10 px-6 max-w-2xl mx-auto">
-        <p className="section-tag justify-center flex">Welcome to Our Community</p>
-        <h1 className="font-playfair text-6xl md:text-8xl text-white leading-[1.05] mb-6">
-          We Are<br />
-          <em className="text-gold not-italic">Samskrithi</em>
-        </h1>
+        <p className="section-tag justify-center flex">{title}</p>
+        <h1 className="font-playfair text-6xl md:text-8xl text-white leading-[1.05] mb-6" dangerouslySetInnerHTML={{ __html: subTitle }} />
+          {/* {subTitle}
+        </h1> */}
         <p className="text-cream-dark text-lg max-w-md mx-auto mb-10 leading-relaxed font-light">
-          A vibrant community rooted in culture, sport, and the arts — bringing people together
-          through shared passions and meaningful activities.
+          {description}
         </p>
         <div className="flex gap-4 justify-center flex-wrap">
-          <Link href="/activities" className="btn-gold cursor-none">Explore Activities</Link>
-          <Link href="/about"      className="btn-outline cursor-none">Learn More</Link>
+          {buttons.map(({ text, link }, index) => (
+            <Link
+              key={`${text}-${index}`}
+              href={link}
+              className={`cursor-none ${index === 0 ? 'btn-gold' : 'btn-outline'}`}
+            >
+              {text}
+            </Link>
+          ))}
         </div>
       </div>
     </section>

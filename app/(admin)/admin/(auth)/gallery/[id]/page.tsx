@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react'
 import { toast } from 'sonner'
 import { useParams, useRouter } from "next/navigation";
-import { MdDelete, MdArrowBack } from "react-icons/md";
+import { MdArrowBack } from "react-icons/md";
 import { ImageUploader } from '@/components/ui/image-uploader'
 import Image from 'next/image';
 
@@ -23,7 +23,6 @@ const GalleryItemPage = () => {
     const [loading, setLoading] = useState(true);
     const [title, setTitle] = useState("");
     const [images, setImages] = useState<string[]>([]);
-    const [newImage, setNewImage] = useState("");
     const [saving, setSaving] = useState(false);
 
     const fetchGalleryItem = async () => {
@@ -87,7 +86,6 @@ const GalleryItemPage = () => {
         if (!url) return;
         const updatedImages = [...images, url];
         setImages(updatedImages);
-        setNewImage("");
         await persist({ images: updatedImages });
     }
 
@@ -144,34 +142,32 @@ const GalleryItemPage = () => {
                     <label className='font-bold text-sm'>Images ({images.length})</label>
                 </div>
 
+                <ImageUploader
+                    onChange={handleAddImage}
+                    deleteAfterUpload={true}
+                    
+                    recommendedDimension="Recommended: 800 x 800 (px)"
+                />
+
                 <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4'>
-                    {images.map((img, index) => (
-                        <div key={index} className='relative group border border-black/10 rounded-md overflow-hidden'>
+                    {images.map((url, index) => (
+                        <div key={index} className="relative h-40">
                             <Image
-                                src={img}
+                                src={url}
                                 alt={`Gallery image ${index + 1}`}
+                                className="h-full w-full object-cover rounded-lg"
                                 width={200}
                                 height={200}
-                                className="h-32 w-full object-cover"
                             />
                             <button
                                 type="button"
                                 onClick={() => handleRemoveImage(index)}
-                                className="absolute top-1 right-1 bg-white/90 rounded-full p-1 shadow"
+                                className="absolute top-2 right-2 bg-red-500 text-white p-1 rounded-full hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500"
                             >
-                                <MdDelete className="text-red-600" />
+                                ×
                             </button>
                         </div>
                     ))}
-
-                    {/* Uploader tile for adding a new image */}
-                    <div className='border border-dashed border-black/20 rounded-md flex items-center justify-center h-32'>
-                        <ImageUploader
-                            value={newImage}
-                            onChange={handleAddImage}
-                            recommendedDimension="Recommended: 800 x 800 (px)"
-                        />
-                    </div>
                 </div>
             </div>
         </div>

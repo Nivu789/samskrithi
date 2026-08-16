@@ -14,6 +14,7 @@ import { useEffect } from 'react';
 import { toast } from 'sonner';
 import { RiProductHuntLine } from 'react-icons/ri';
 import { Settings } from 'lucide-react';
+import { MdEvent } from 'react-icons/md';
 
 
 const AdminNavbar = () => {
@@ -57,21 +58,21 @@ const AdminNavbar = () => {
         //     )),
         //   ] },
           { name: "Activities", href: "/admin/activities", icon: Workflow },
-        // { name: "Projects", href: "/admin/projects", icon: Workflow },
-        { name: "Gallery", href: "/admin/gallery", icon: GalleryThumbnails },
-        { name: "Contact", href: "###", icon: EnvelopeIcon,hasChild:true,children: [
-          { name: "Main Page", href: "/admin/contact" },
-          {name:"Enquiries",href:"/admin/contact/enquiries"}
-        ] },
-        { name: "Faq", href: "/admin/faq", icon: QuestionMarkCircleIcon },
-        { name: "QHSE", href: "/admin/qhse", icon: HeartHandshake },
-        { name: "Blogs", href: "/admin/blogs", icon: PaperclipIcon },
-        { name: "Downloads", href: "/admin/downloads", icon: DownloadIcon },
-        { name: "Careers", href: "####", icon: BriefcaseBusinessIcon,hasChild:true,children:[
-          { name: "Main Page", href: "/admin/careers" },
-          {name:"Enquiries",href:"/admin/careers/enquiries"}
-        ] },
-        { name: "Sitemap", href: "/admin/sitemap", icon: LinkIcon },
+          { name: "Events", href: "/admin/events", icon: MdEvent },
+          { name: "Gallery", href: "/admin/gallery", icon: GalleryThumbnails },
+          { name: "Contact", href: "###", icon: EnvelopeIcon,hasChild:true,children: [
+            { name: "Main Page", href: "/admin/contact" },
+            {name:"Enquiries",href:"/admin/contact/enquiries"}
+          ] },
+        //   { name: "Faq", href: "/admin/faq", icon: QuestionMarkCircleIcon },
+        //   { name: "QHSE", href: "/admin/qhse", icon: HeartHandshake },
+        // { name: "Blogs", href: "/admin/blogs", icon: PaperclipIcon },
+        // { name: "Downloads", href: "/admin/downloads", icon: DownloadIcon },
+        // { name: "Careers", href: "####", icon: BriefcaseBusinessIcon,hasChild:true,children:[
+        //   { name: "Main Page", href: "/admin/careers" },
+        //   {name:"Enquiries",href:"/admin/careers/enquiries"}
+        // ] },
+        // { name: "Sitemap", href: "/admin/sitemap", icon: LinkIcon },
         { name: "Settings", href: "/admin/settings", icon: Settings},
       ];
 

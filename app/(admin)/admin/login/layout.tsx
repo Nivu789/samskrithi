@@ -1,6 +1,6 @@
 export const metadata = {
-  title: "Quad Dream | Backend Console",
-  description: "Quad Dream",
+  title: "Samskrithi | Backend Console",
+  description: "Samskrithi",
 };
 
 // import "../../../globals.css";

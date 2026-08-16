@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import connectDB from "@/lib/mongodb";
 import Activity from "@/app/models/Activity";
-import { verifyAdmin } from "@/lib/verifyAdmin";
+import { revalidateTag } from "next/cache";
 
 
 export async function GET() {
@@ -30,6 +30,7 @@ export async function PATCH(request: NextRequest) {
         if (!activity) {
             return NextResponse.json({ message: "Activity not found" }, { status: 404 });
         }
+        revalidateTag("activity");
         return NextResponse.json({data:activity,message:"Activity updated successfully"}, { status: 200 });
     } catch (error) {
         console.log(error);

@@ -187,9 +187,9 @@ const AdminGallery = () => {
                 </div>
 
                 {galleryItems && galleryItems.length > 0 ? (
-                    <div className="overflow-x-auto rounded-lg border border-gray-200 shadow dark:border-gray-700">
-                        <table className="w-full text-left text-sm text-gray-700 dark:text-gray-300">
-                            <thead className="bg-gray-100 text-xs uppercase text-gray-700 dark:bg-gray-800 dark:text-gray-300">
+                    <div className="overflow-x-auto rounded-lg border border-gray-200 shadow">
+                        <table className="w-full text-left text-sm text-gray-700">
+                            <thead className="bg-gray-100 text-xs uppercase text-gray-700">
                                 <tr>
                                     <th scope="col" className="px-4 py-3">
                                         <input
@@ -209,7 +209,7 @@ const AdminGallery = () => {
                                 {galleryItems.map((item, i) => (
                                     <tr
                                         key={item._id ?? i}
-                                        className="border-b border-gray-200 bg-white hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
+                                        className="border-b border-gray-200 bg-white hover:bg-gray-50"
                                     >
                                         <td className="px-4 py-3">
                                             <input
@@ -233,7 +233,7 @@ const AdminGallery = () => {
                                                 </div>
                                             )}
                                         </td>
-                                        <td className="px-4 py-3 font-medium text-gray-900 dark:text-white">
+                                        <td className="px-4 py-3 font-medium text-gray-900">
                                             {item.title}
                                         </td>
                                         <td className="px-4 py-3">{item.images?.length ?? 0}</td>
