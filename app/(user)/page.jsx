@@ -10,6 +10,9 @@ import { getGallery } from '@/lib/service/gallery.service';
 
 export const metadata = {
   title: 'Home — Samskrithi',
+  description:
+    'Samskrithi is a vibrant community rooted in culture, sport, and the arts — explore our activities, upcoming events and gallery.',
+  alternates: { canonical: '/' },
 };
 
 function truncate(text, maxLength = 80) {

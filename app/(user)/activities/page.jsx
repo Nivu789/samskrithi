@@ -3,6 +3,9 @@ import Link from 'next/link';
 
 export const metadata = {
   title: 'Activities — Samskrithi',
+  description:
+    'Explore the sports, cultural and arts programmes run by Samskrithi for members of every age and skill level.',
+  alternates: { canonical: '/activities' },
 };
 
 // Static fallback data — kept for reference, no longer used for rendering.

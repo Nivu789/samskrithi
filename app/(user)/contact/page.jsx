@@ -3,6 +3,9 @@ import ContactForm from "./ContactForm";
 
 export const metadata = {
   title: 'Contact — Samskrithi',
+  description:
+    'Get in touch with Samskrithi — find our address, phone, email and send us a message.',
+  alternates: { canonical: '/contact' },
 };
 
 export default async function ContactPage() {

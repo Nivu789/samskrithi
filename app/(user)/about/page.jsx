@@ -3,6 +3,9 @@ import { getAbout } from "@/lib/service/about.service";
 
 export const metadata = {
   title: 'About — Samskrithi',
+  description:
+    "Learn about Samskrithi's mission, history, leadership and management committee.",
+  alternates: { canonical: '/about' },
 };
 
 // Static fallback data — kept for reference, no longer used for rendering.

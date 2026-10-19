@@ -2,6 +2,9 @@ import { getEvents } from "@/lib/service/event.service";
 
 export const metadata = {
   title: 'Events — Samskrithi',
+  description:
+    'Browse upcoming and past events organised by Samskrithi, from cultural celebrations to sports meets.',
+  alternates: { canonical: '/events' },
 };
 
 function formatEventDate(dateString) {

@@ -16,6 +16,9 @@ const dmSans = DM_Sans({
 });
 
 export const metadata = {
+  metadataBase: new URL(
+    (process.env.NEXT_PUBLIC_SITE_URL || 'https://samskrithi.org').replace(/\/$/, '')
+  ),
   title: 'Samskrithi — Community',
   description:
     'A vibrant community rooted in culture, sport, and the arts — bringing people together through shared passions.',
