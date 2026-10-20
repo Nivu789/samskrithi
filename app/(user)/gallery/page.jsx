@@ -1,9 +1,9 @@
 import GalleryClient from './GalleryClient';
 
 export const metadata = {
-  title: 'Gallery — Samskrithi',
+  title: 'Photo Gallery: Events & Programmes | Samskrithi Pullur',
   description:
-    'Photos from Samskrithi events, sports and cultural programmes — relive the moments from our community.',
+    'Browse photos from Samskrithi events, sports meets and cultural programmes in Pullur, Kerala, and relive the best moments from our community.',
   alternates: { canonical: '/gallery' },
 };
 

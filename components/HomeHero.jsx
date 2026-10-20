@@ -1,5 +1,7 @@
 'use client';
 
+import Html from '@/components/Html';
+
 import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 
@@ -80,12 +82,12 @@ export default function HomeHero({ data }) {
 
       {/* Content */}
       <div className="relative z-10 px-6 max-w-2xl mx-auto">
-        <p className="section-tag justify-center flex">{title}</p>
+        <p className="section-tag justify-center flex"><Html text={title} /></p>
         <h1 className="font-playfair text-6xl md:text-8xl text-white leading-[1.05] mb-6" dangerouslySetInnerHTML={{ __html: subTitle }} />
           {/* {subTitle}
         </h1> */}
         <p className="text-cream-dark text-lg max-w-md mx-auto mb-10 leading-relaxed font-light">
-          {description}
+          <Html text={description} />
         </p>
         <div className="flex gap-4 justify-center flex-wrap">
           {buttons.map(({ text, link }, index) => (

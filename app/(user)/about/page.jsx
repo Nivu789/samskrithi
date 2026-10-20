@@ -1,10 +1,13 @@
+import Html from '@/components/Html';
+import RelatedLinks from '@/components/RelatedLinks';
+import Image from 'next/image';
 import { getAbout } from "@/lib/service/about.service";
 
 
 export const metadata = {
-  title: 'About — Samskrithi',
+  title: 'About Samskrithi Pullur | Our Mission, History & Team',
   description:
-    "Learn about Samskrithi's mission, history, leadership and management committee.",
+    'Learn how Samskrithi began, what we stand for, and meet the president, secretary, treasurer and committee who lead our Pullur community.',
   alternates: { canonical: '/about' },
 };
 
@@ -46,20 +49,22 @@ const VALUES = [
 function MemberCard({ role, name, image, imageAlt, large = false }) {
   return (
     <div className={`flex flex-col items-center ${large ? 'w-60' : 'w-48'}`}>
-      <div className={`w-full ${large ? 'h-72' : 'h-56'} overflow-hidden bg-cream-light`}>
-        <img
+      <div className={`relative w-full ${large ? 'h-72' : 'h-56'} overflow-hidden bg-cream-light`}>
+        <Image
           src={image}
           alt={imageAlt || name}
-          className="w-full h-full object-cover object-center"
+          fill
+          sizes="240px"
+          className="object-cover object-center"
         />
       </div>
       <div className="w-full text-center bg-brown-darkest py-3 px-2">
         {role && (
           <p className="text-xs text-gold font-semibold tracking-widest uppercase mb-0.5">
-            {role}
+            <Html text={role} />
           </p>
         )}
-        <p className="text-cream font-playfair text-sm font-semibold">{name}</p>
+        <p className="text-cream font-playfair text-sm font-semibold"><Html text={name} /></p>
       </div>
     </div>
   );
@@ -74,12 +79,12 @@ export default async function AboutPage() {
       {/* ── Page hero ─────────────────────────────────────────── */}
       <section className="page-hero">
         <div className="max-w-7xl mx-auto px-6 py-24">
-          <span className="section-tag">{about.firstSection?.subTitle}</span>
+          <span className="section-tag"><Html text={about.firstSection?.subTitle} /></span>
           <h1 className="font-playfair text-5xl md:text-6xl text-cream leading-tight">
-            {about.firstSection?.title}
+            <Html text={about.firstSection?.title} />
           </h1>
           <p className="text-cream-dark font-light mt-4 max-w-xl leading-relaxed text-lg">
-            {about.firstSection?.description}
+            <Html text={about.firstSection?.description} />
           </p>
         </div>
       </section>
@@ -89,9 +94,9 @@ export default async function AboutPage() {
         <div className="max-w-7xl mx-auto">
 
           <div className="text-center mb-16">
-            <span className="section-tag">{about.secondSection?.subTitle}</span>
+            <span className="section-tag"><Html text={about.secondSection?.subTitle} /></span>
             <h2 className="font-playfair text-4xl md:text-5xl text-brown-darkest">
-              {about.secondSection?.title}
+              <Html text={about.secondSection?.title} />
             </h2>
           </div>
 
@@ -112,7 +117,7 @@ export default async function AboutPage() {
           {/* Executive members */}
           <div className="text-center mb-10">
             <h3 className="font-playfair text-2xl text-brown-darkest border-b-2 border-gold pb-1 inline-block">
-              {about.thirdSection?.title}
+              <Html text={about.thirdSection?.title} />
             </h3>
           </div>
           <div className="flex flex-wrap justify-center gap-6">
@@ -138,9 +143,9 @@ export default async function AboutPage() {
             {about.fourthSection?.items?.map(({ title, description }) => (
               <div key={title}>
                 <h3 className="font-playfair text-xl text-brown-darkest border-b-2 border-gold pb-1 inline-block">
-                  {title}
+                  <Html text={title} />
                 </h3>
-                <p className="text-brown-mid leading-relaxed font-light mt-3">{description}</p>
+                <p className="text-brown-mid leading-relaxed font-light mt-3"><Html text={description} /></p>
               </div>
             ))}
           </div>
@@ -148,35 +153,45 @@ export default async function AboutPage() {
           {/* Right column — values + quote */}
           <div>
             <h3 className="font-playfair text-xl text-brown-darkest border-b-2 border-gold pb-1 inline-block mb-6">
-              {about.fifthSection?.title}
+              <Html text={about.fifthSection?.title} />
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {about.fifthSection?.items?.map(({ image, imageAlt, title, description }) => (
                 <div key={title} className="bg-cream-light border-l-4 border-gold p-5">
-                  <div className="w-10 h-10 mb-2 overflow-hidden rounded-full">
-                    <img
+                  <div className="relative w-10 h-10 mb-2 overflow-hidden rounded-full">
+                    <Image
                       src={image}
                       alt={imageAlt || title}
-                      className="w-full h-full object-cover object-center"
+                      fill
+                      sizes="40px"
+                      className="object-cover object-center"
                     />
                   </div>
-                  <h4 className="font-playfair text-brown-darkest mb-1">{title}</h4>
-                  <p className="text-sm text-brown-mid leading-relaxed font-light">{description}</p>
+                  <h4 className="font-playfair text-brown-darkest mb-1"><Html text={title} /></h4>
+                  <p className="text-sm text-brown-mid leading-relaxed font-light"><Html text={description} /></p>
                 </div>
               ))}
             </div>
 
             <blockquote className="mt-8 bg-cream p-6 border-l-4 border-gold">
               <p className="font-playfair text-xl text-brown-darkest italic leading-relaxed">
-                &ldquo;{about.sixthSection?.message}&rdquo;
+                &ldquo;<Html text={about.sixthSection?.message} />&rdquo;
               </p>
               <footer className="mt-4 text-xs text-brown-mid font-semibold tracking-widest uppercase">
-                — {about.sixthSection?.name}
+                — <Html text={about.sixthSection?.name} />
               </footer>
             </blockquote>
           </div>
         </div>
       </section>
+      <RelatedLinks
+        heading="Get involved with Samskrithi"
+        links={[
+          { href: '/activities', label: 'See our sports, cultural and arts activities' },
+          { href: '/events', label: 'Find upcoming events in Pullur' },
+          { href: '/contact', label: 'Contact Samskrithi to join' },
+        ]}
+      />
     </>
   );
 }

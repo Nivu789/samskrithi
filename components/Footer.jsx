@@ -54,7 +54,7 @@ export default function Footer() {
             <h4 className="text-gold text-xs tracking-[0.2em] uppercase mb-5 font-medium">Contact</h4>
             <ul className="space-y-2 text-sm opacity-70">
               <li>info@samskrithi.in</li>
-              <li>+91 XXXXX XXXXX</li>
+              <li>+91 9995624501</li>
               <li>Community Centre,</li>
               <li>Kerala, India</li>
             </ul>

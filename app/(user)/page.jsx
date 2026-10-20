@@ -1,6 +1,9 @@
+import Html from '@/components/Html';
+import { stripHtml } from '@/lib/html';
 // app/page.js
 
 import Link from 'next/link';
+import Image from 'next/image';
 import HomeHero from '@/components/HomeHero';
 
 import { getHome } from '@/lib/service/home.service';
@@ -9,9 +12,9 @@ import { getEvents } from '@/lib/service/event.service';
 import { getGallery } from '@/lib/service/gallery.service';
 
 export const metadata = {
-  title: 'Home — Samskrithi',
+  title: 'Samskrithi Pullur | Culture, Sports & Arts in Kerala',
   description:
-    'Samskrithi is a vibrant community rooted in culture, sport, and the arts — explore our activities, upcoming events and gallery.',
+    'Samskrithi is a Pullur community rooted in culture, sport and the arts. Explore our activities, join upcoming events and see photos from our programmes.',
   alternates: { canonical: '/' },
 };
 
@@ -59,12 +62,12 @@ export default async function HomePage() {
       {/* ── Activities preview ───────────────────────────────── */}
       <section className="bg-white py-20 px-6">
         <div className="max-w-7xl mx-auto">
-          <span className="section-tag">{home?.thirdSection?.title}</span>
+          <span className="section-tag"><Html text={home?.thirdSection?.title} /></span>
           <h2 className="section-title mb-4" dangerouslySetInnerHTML={{ __html: home?.thirdSection?.subTitle }} />
           {/* {home?.thirdSection?.subTitle}
           </h2> */}
           <p className="text-brown-mid max-w-lg leading-relaxed font-light mb-12">
-            {home?.thirdSection?.description}
+            <Html text={home?.thirdSection?.description} />
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -75,17 +78,19 @@ export default async function HomePage() {
                 className="group flex flex-col overflow-hidden hover:-translate-y-1 hover:shadow-2xl transition-all duration-300"
               >
                 <div className="relative overflow-hidden" style={{ aspectRatio: '4/3' }}>
-                  <img
+                  <Image
                     src={image}
                     alt={imageAlt || title}
-                    className="absolute inset-0 w-full h-full object-cover object-center
+                    fill
+                    sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+                    className="object-cover object-center
                      group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
                   <div className="absolute bottom-0 left-0 right-0 p-5">
-                    <h3 className="font-playfair text-xl text-white leading-tight">{title}</h3>
+                    <h3 className="font-playfair text-xl text-white leading-tight"><Html text={title} /></h3>
                     <div className="w-8 h-px bg-gold my-2.5 group-hover:w-14 transition-all duration-300" />
-                    <p className="text-white/70 text-xs font-light tracking-wide">{subTitle}</p>
+                    <p className="text-white/70 text-xs font-light tracking-wide"><Html text={subTitle} /></p>
                   </div>
                 </div>
 
@@ -94,7 +99,7 @@ export default async function HomePage() {
                     className="absolute bottom-0 left-0 w-full h-0.5 bg-gold
                      origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
                   />
-                  <p className="text-brown-mid text-sm leading-relaxed font-light">{truncate(description, 80)}</p>
+                  <p className="text-brown-mid text-sm leading-relaxed font-light">{truncate(stripHtml(description), 80)}</p>
                 </div>
               </Link>
             ))}
@@ -105,12 +110,12 @@ export default async function HomePage() {
       {/* ── Events preview ───────────────────────────────────── */}
       <section className="py-20 px-6" style={{ background: '#3D1F0A' }}>
         <div className="max-w-7xl mx-auto">
-          <span className="section-tag">{home?.fourthSection?.title}</span>
+          <span className="section-tag"><Html text={home?.fourthSection?.title} /></span>
           <h2 className="font-playfair text-4xl md:text-5xl text-cream leading-tight mb-4" dangerouslySetInnerHTML={{ __html: home?.fourthSection?.subTitle }} />
           {/* {home?.fourthSection?.subTitle}
           </h2> */}
           <p className="text-cream-dark font-light max-w-lg leading-relaxed mb-12">
-            {home?.fourthSection?.description}
+            <Html text={home?.fourthSection?.description} />
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -122,8 +127,8 @@ export default async function HomePage() {
                 <span className="inline-block bg-gold text-brown-darkest text-xs font-bold tracking-widest px-3 py-1 mb-4">
                   {formatEventDate(date)}
                 </span>
-                <h3 className="font-playfair text-lg text-cream mb-2">{title}</h3>
-                <p className="text-cream-dark text-sm font-light leading-relaxed">{description}</p>
+                <h3 className="font-playfair text-lg text-cream mb-2"><Html text={title} /></h3>
+                <p className="text-cream-dark text-sm font-light leading-relaxed"><Html text={description} /></p>
               </div>
             ))}
           </div>
@@ -158,13 +163,15 @@ export default async function HomePage() {
                 className={`relative overflow-hidden group ${index === 0 ? 'md:col-span-2 md:row-span-2' : ''}`}
               >
                 <div className={`w-full ${index === 0 ? 'aspect-[4/3] md:aspect-auto md:h-full min-h-48' : 'aspect-[4/3]'}`}>
-                  <img
+                  <Image
                     src={images?.[0]}
                     alt={title}
-                    className="absolute inset-0 w-full h-full object-cover object-center"
+                    fill
+                    sizes="(min-width: 768px) 50vw, 100vw"
+                    className="object-cover object-center"
                   />
                   <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/60 to-transparent">
-                    <span className="text-cream-light text-sm font-medium leading-snug">{title}</span>
+                    <span className="text-cream-light text-sm font-medium leading-snug"><Html text={title} /></span>
                   </div>
                   <div className="absolute inset-0 bg-brown-darkest/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                     <span className="font-playfair text-cream text-base">View Gallery</span>

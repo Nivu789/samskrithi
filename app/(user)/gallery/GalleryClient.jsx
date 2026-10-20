@@ -1,5 +1,7 @@
 'use client';
 
+import RelatedLinks from '@/components/RelatedLinks';
+import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 
@@ -86,10 +88,10 @@ export default function GalleryClient() {
         <div className="max-w-4xl mx-auto px-6 py-24">
           <span className="section-tag justify-center flex">Memories &amp; Moments</span>
           <h1 className="font-playfair text-5xl md:text-6xl text-cream leading-tight">
-            Our <em className="text-gold not-italic">Gallery</em>
+            Photo Gallery: <em className="text-gold not-italic">Samskrithi Events &amp; Programmes</em>
           </h1>
           <p className="text-cream-dark font-light mt-4 max-w-xl mx-auto leading-relaxed text-lg">
-            Browse our events — click any album to view the full collection.
+            Browse photo albums from Samskrithi events, sports meets and cultural programmes in Pullur, Kerala — click any album to view the full collection.
           </p>
         </div>
       </section>
@@ -134,10 +136,12 @@ export default function GalleryClient() {
                 className="group text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-gold"
               >
                 <div className="relative aspect-[4/3] overflow-hidden bg-cream-dark">
-                  <img
+                  <Image
                     src={event.images[0]}
                     alt={event.title}
-                    className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                    fill
+                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                    className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300" />
                   <span className="absolute top-3 right-3 bg-black/60 text-white text-xs font-semibold px-2.5 py-1 tracking-wide">
@@ -284,6 +288,14 @@ export default function GalleryClient() {
       <style>{`
         @keyframes fadeIn { from { opacity: 0; transform: scale(0.97); } to { opacity: 1; transform: scale(1); } }
       `}</style>
+      <RelatedLinks
+        heading="More from Samskrithi"
+        links={[
+          { href: '/events', label: 'See our upcoming events' },
+          { href: '/activities', label: 'Explore our activities' },
+          { href: '/about', label: 'Learn about Samskrithi' },
+        ]}
+      />
     </>
   );
 }

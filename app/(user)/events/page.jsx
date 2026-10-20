@@ -1,9 +1,11 @@
+import Html from '@/components/Html';
+import RelatedLinks from '@/components/RelatedLinks';
 import { getEvents } from "@/lib/service/event.service";
 
 export const metadata = {
-  title: 'Events — Samskrithi',
+  title: 'Cultural & Sports Events in Pullur, Kerala | Samskrithi',
   description:
-    'Browse upcoming and past events organised by Samskrithi, from cultural celebrations to sports meets.',
+    'See upcoming and past Samskrithi events in Pullur, Kerala, from cultural celebrations to sports meets. Find dates and details and join in.',
   alternates: { canonical: '/events' },
 };
 
@@ -25,7 +27,7 @@ export default async function EventsPage() {
         <div className="max-w-4xl mx-auto px-6 py-24">
           <span className="section-tag justify-center flex">Calendar</span>
           <h1 className="font-playfair text-5xl md:text-6xl text-cream leading-tight">
-            Events &amp; <em className="text-gold not-italic">Programmes</em>
+            Cultural &amp; Sports <em className="text-gold not-italic">Events</em> in Pullur, Kerala
           </h1>
           <p className="text-cream-dark font-light mt-4 max-w-xl mx-auto leading-relaxed text-lg">
             Stay up to date with everything happening at Samskrithi throughout the year.
@@ -54,16 +56,16 @@ export default async function EventsPage() {
 
                   {/* Content */}
                   <div>
-                    <h2 className="font-playfair text-xl text-brown-darkest mb-1">{event.title}</h2>
-                    <p className="text-brown-mid text-sm font-light leading-relaxed mb-2">{event.description}</p>
+                    <h2 className="font-playfair text-xl text-brown-darkest mb-1"><Html text={event.title} /></h2>
+                    <p className="text-brown-mid text-sm font-light leading-relaxed mb-2"><Html text={event.description} /></p>
                     <span className="text-xs text-gold font-semibold">
-                      📍 {event.venue}&nbsp;&nbsp;|&nbsp;&nbsp;🕐 {event.time}
+                      📍 <Html text={event.venue} />&nbsp;&nbsp;|&nbsp;&nbsp;🕐 <Html text={event.time} />
                     </span>
                   </div>
 
                   {/* Tag */}
                   <div className="hidden md:block">
-                    <span className="tag-pill whitespace-nowrap">{event.tag}</span>
+                    <span className="tag-pill whitespace-nowrap"><Html text={event.tag} /></span>
                   </div>
                 </div>
               );
@@ -75,6 +77,14 @@ export default async function EventsPage() {
           )}
         </div>
       </section>
+      <RelatedLinks
+        heading="More from Samskrithi"
+        links={[
+          { href: '/gallery', label: 'Browse photos from past events' },
+          { href: '/activities', label: 'Explore our activities' },
+          { href: '/contact', label: 'Ask us about an event' },
+        ]}
+      />
     </>
   );
 }

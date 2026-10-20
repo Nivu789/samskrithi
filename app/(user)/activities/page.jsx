@@ -1,10 +1,12 @@
+import Html from '@/components/Html';
 import { getActivity } from '@/lib/service/activity.service';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export const metadata = {
-  title: 'Activities — Samskrithi',
+  title: 'Sports, Cultural & Arts Activities in Pullur | Samskrithi',
   description:
-    'Explore the sports, cultural and arts programmes run by Samskrithi for members of every age and skill level.',
+    "Explore Samskrithi's sports, cultural and arts programmes in Pullur, Kerala, with coaching and sessions for every age group and skill level. Join today.",
   alternates: { canonical: '/activities' },
 };
 
@@ -125,21 +127,21 @@ export default async function ActivitiesPage() {
             className="section-tag justify-center flex"
             style={{ animation: 'fade-up 0.6s ease forwards', opacity: 0 }}
           >
-            {banner?.subTitle}
+            <Html text={banner?.subTitle} />
           </span>
 
           <h1
             className="font-playfair text-5xl md:text-7xl text-cream leading-tight"
             style={{ animation: 'fade-up 0.6s ease 0.15s forwards', opacity: 0 }}
           >
-            {banner?.title}
+            <Html text={banner?.title} />
           </h1>
 
           <p
             className="text-cream-dark font-light mt-6 max-w-xl mx-auto leading-relaxed text-lg"
             style={{ animation: 'fade-up 0.6s ease 0.3s forwards', opacity: 0 }}
           >
-            {banner?.description}
+            <Html text={banner?.description} />
           </p>
 
           <div className="flex justify-center gap-3 mt-10 flex-wrap">
@@ -169,29 +171,31 @@ export default async function ActivitiesPage() {
           >
             {/* Photo panel */}
             <div className="md:w-2/5 relative overflow-hidden min-h-80 md:min-h-[420px]">
-              <img
+              <Image
                 src={image}
                 alt={imageAlt || title}
-                className="absolute inset-0 w-full h-full object-cover object-center"
+                fill
+                sizes="(min-width: 768px) 40vw, 100vw"
+                className="object-cover object-center"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-8">
-                <h2 className="font-playfair text-4xl text-white leading-tight">{title}</h2>
+                <h2 className="font-playfair text-4xl text-white leading-tight"><Html text={title} /></h2>
                 <div className="w-10 h-px bg-gold my-3" />
-                <p className="text-white/75 text-sm font-light tracking-wide">{subTitle}</p>
+                <p className="text-white/75 text-sm font-light tracking-wide"><Html text={subTitle} /></p>
               </div>
             </div>
 
             {/* Content panel */}
             <div className="md:w-3/5 py-12 px-8 lg:px-14 flex flex-col justify-center">
-              <p className="text-brown-mid leading-relaxed font-light mb-8">{description}</p>
+              <p className="text-brown-mid leading-relaxed font-light mb-8"><Html text={description} /></p>
 
               {/* Highlights */}
               <ul className="space-y-2.5 mb-8">
                 {subItems?.map(({ value }) => (
                   <li key={value} className="flex items-start gap-3 text-sm text-brown-mid">
                     <span className="text-gold font-bold shrink-0 mt-0.5">✦</span>
-                    <span>{value}</span>
+                    <span><Html text={value} /></span>
                   </li>
                 ))}
               </ul>
@@ -203,7 +207,7 @@ export default async function ActivitiesPage() {
                     <span className="block text-xs text-gold font-semibold tracking-widest uppercase mb-1">
                       {label}
                     </span>
-                    <span className="text-brown-darkest text-sm font-medium leading-snug">{value}</span>
+                    <span className="text-brown-darkest text-sm font-medium leading-snug"><Html text={value} /></span>
                   </div>
                 ))}
               </div>
@@ -221,12 +225,12 @@ export default async function ActivitiesPage() {
 
       {/* ── CTA ───────────────────────────────────────────────── */}
       <section className="py-24 px-6 text-center" style={{ background: '#3D1F0A' }}>
-        <span className="section-tag justify-center flex">{cta?.subTitle}</span>
+        <span className="section-tag justify-center flex"><Html text={cta?.subTitle} /></span>
         <h2 className="font-playfair text-4xl md:text-5xl text-cream mb-4">
-          {cta?.title}
+          <Html text={cta?.title} />
         </h2>
         <p className="text-cream-dark font-light max-w-md mx-auto mb-10 leading-relaxed">
-          {cta?.description}
+          <Html text={cta?.description} />
         </p>
         <Link href={cta?.buttonLink ?? '/contact'} className="btn-gold">{cta?.buttonText}</Link>
       </section>

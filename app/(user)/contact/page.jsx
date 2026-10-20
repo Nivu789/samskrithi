@@ -1,10 +1,11 @@
+import Html from '@/components/Html';
 import { getContact } from "@/lib/service/contact.service";
 import ContactForm from "./ContactForm";
 
 export const metadata = {
-  title: 'Contact — Samskrithi',
+  title: 'Contact Samskrithi Pullur | Address, Phone & Enquiries',
   description:
-    'Get in touch with Samskrithi — find our address, phone, email and send us a message.',
+    'Get in touch with Samskrithi in Pullur, Kerala. Find our address, phone and email, or send a message to join activities or ask about events.',
   alternates: { canonical: '/contact' },
 };
 
@@ -32,13 +33,13 @@ export default async function ContactPage() {
         {/* Left — info panel */}
         <div className="bg-brown-darkest text-cream-light p-10 space-y-8">
           <div>
-            <span className="section-tag">{contact.infoPanel?.subTitle}</span>
+            <span className="section-tag"><Html text={contact.infoPanel?.subTitle} /></span>
             <h2 className="font-playfair text-3xl text-cream" dangerouslySetInnerHTML={{ __html: contact.infoPanel?.title }} />
               {/* {contact.infoPanel?.title}
             </h2> */}
             <div className="gold-divider" />
             <p className="text-cream-dark font-light text-sm leading-relaxed">
-              {contact.infoPanel?.description}
+              <Html text={contact.infoPanel?.description} />
             </p>
           </div>
 
@@ -48,8 +49,8 @@ export default async function ContactPage() {
                 {icon}
               </div>
               <div>
-                <h4 className="text-gold text-xs tracking-widest uppercase mb-1 font-medium">{title}</h4>
-                <p className="text-cream-dark text-sm leading-relaxed whitespace-pre-line">{info}</p>
+                <h4 className="text-gold text-xs tracking-widest uppercase mb-1 font-medium"><Html text={title} /></h4>
+                <p className="text-cream-dark text-sm leading-relaxed whitespace-pre-line"><Html text={info} /></p>
               </div>
             </div>
           ))}
